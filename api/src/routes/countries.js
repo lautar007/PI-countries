@@ -22,12 +22,12 @@ server.get('', async(req, res, next)=>{
         const countriesTotal = await getDbInfo();
         const country = countriesTotal.filter(el=> el.Name.toUpperCase().includes(name.toUpperCase()));
         country.length > 0 ?
-        res.json(country[0].dataValues) :
+        res.status(200).json(country[0].dataValues) :
         res.status(404).send('El país buscado no existe')
     }
     Country.findAll()
     .then (countrys =>{
-        countrys.length > 0 ? res.json(countrys) 
+        countrys.length > 0 ? res.status(200).json(countrys) 
         : 
         axios.get('https://restcountries.com/v3/all')
         .then(countrys =>{
