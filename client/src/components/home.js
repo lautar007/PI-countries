@@ -1,22 +1,44 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import {useDispatch, useSelector} from 'react-redux';
-import { getCountries } from "../actions";
+import { getActivities, getCountries, filterContinent } from "../actions";
 import { Link } from "react-router-dom";
 import Card from "./cards";
+import Paginado from "./paginado";
 
 export default function Home(){
     
     const dispatch = useDispatch();
     const allCountries = useSelector((state)=>state.countries);
+    const allActivities = useSelector((state)=>state.activities);
+
+    //PAGINADO
+    const [paginaActual, setPaginaActual] = useState(1);
+    const [countriesPorPagina, setCountriesPorPagina] = useState(9);
+    const ultimoCountry = paginaActual * countriesPorPagina;
+    const primerCountry = ultimoCountry - countriesPorPagina;
+    const countriesActuales = allCountries.slice(primerCountry, ultimoCountry)
+
+    const paginado = (numeroPagina) =>{
+        setPaginaActual(numeroPagina)
+    }
 
     useEffect(()=>{
         dispatch(getCountries());
     },[]);
 
+    useEffect(()=>{
+        dispatch(getActivities());
+    },[]);
+
     function handleRecarga(e){
         e.preventDefault();
         dispatch(getCountries());
+    }
+
+    function handleFilterContinent(e){
+        e.preventDefault();
+        dispatch(filterContinent(e.target.value));
     }
 
     return(
@@ -38,7 +60,7 @@ export default function Home(){
                     <option value = 'des'>Descendente</option>
                 </select>
                 <h4>Selecciona un Continente</h4>
-                <select>
+                <select onChange = {e => handleFilterContinent(e)}>
                     <option value = 'Todos'>Todos</option> 
                     <option value = 'Americas'>Américas</option>
                     <option value = 'Europe'>Europa</option>
@@ -46,11 +68,27 @@ export default function Home(){
                     <option value = 'Africa'>África</option>
                     <option value = 'Oceania'>Oceanía</option>
                 </select>
+                <h4>Selecciona una actividad</h4>
+                <select>
+                    <option value = 'Todas'>Todas</option>
+                    {
+                        allActivities && allActivities.map((el)=>{
+                            return(
+                                <option key = {el.id} value = {el.name}>{el.name}</option>
+                            )
+                        })
+                    }
+                </select> 
+                <Paginado
+                countriesPorPagina = {countriesPorPagina}
+                allCountries = {allCountries.length}
+                paginado = {paginado}
+                />
                 {
-                    allCountries && allCountries.map((el)=>{
+                    countriesActuales && countriesActuales.map((el)=>{
                         return(
-                            <div>
-                        <Card key = {el.id} flag = {el.flag} name = {el.Name} continent = {el.continent}/>
+                            <div key = {el.id}>
+                        <Card flag = {el.flag} name = {el.Name} continent = {el.continent}/>
                         <hr/>
                         </div>
                         )

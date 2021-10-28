@@ -9,3 +9,20 @@ export function getCountries(){
         })
     }
 }
+
+export function getActivities(){
+    return async function(dispatch){
+        var json = await axios.get('http://localhost:3001/activity');
+        return dispatch({
+            type: 'GET_ACTIVITIES',
+            payload: json.data
+        })
+    }
+}
+
+export function filterContinent(payload){
+    return{
+        type:'FILTER_CONTINENT',
+        payload
+    }
+}

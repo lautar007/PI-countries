@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 export default function Card({flag, name, continent}){
     return(
-        <div>
+        <div key = {name}>
             <img src = {flag} alt = "img not found" width = '300px' height = '150px'/>
             <div>
             <Link to = {'/home/' + name}> {name}</Link>

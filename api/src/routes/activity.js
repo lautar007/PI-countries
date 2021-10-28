@@ -21,4 +21,16 @@ server.post('', async(req, res) => {
     res.status(200).send('Actividad creada con éxito')
 })
 
+server.get('', (req, res, next)=>{
+    Activities.findAll()
+    .then(activities =>{
+        if(activities.length > 0){
+            res.status(200).json(activities)
+        }
+        else{
+            res.status(404).send('No hay actividades')
+        }
+    })
+})
+
 module.exports = server
