@@ -1,10 +1,11 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import {useDispatch, useSelector} from 'react-redux';
-import { getActivities, getCountries, filterContinent } from "../actions";
+import { getActivities, getCountries, filterContinent, orderAlpha, orderPopulation } from "../actions";
 import { Link } from "react-router-dom";
 import Card from "./cards";
 import Paginado from "./paginado";
+import SearchBar from "./searchBar";
 
 export default function Home(){
     
@@ -18,6 +19,7 @@ export default function Home(){
     const ultimoCountry = paginaActual * countriesPorPagina;
     const primerCountry = ultimoCountry - countriesPorPagina;
     const countriesActuales = allCountries.slice(primerCountry, ultimoCountry)
+    const [orden, setOrden] = useState('');
 
     const paginado = (numeroPagina) =>{
         setPaginaActual(numeroPagina)
@@ -41,6 +43,20 @@ export default function Home(){
         dispatch(filterContinent(e.target.value));
     }
 
+    function handleOrderAlpha(e){
+        e.preventDefault();
+        dispatch(orderAlpha(e.target.value));
+        setPaginaActual(1);
+        setOrden(`Ordenado ${e.target.value}`)
+    }
+
+    function handleOrderPopulation(e){
+        e.preventDefault();
+        dispatch(orderPopulation(e.target.value));
+        setPaginaActual(1);
+        setOrden(`Ordenado ${e.target.value}`)
+    }
+
     return(
         <div>
             <h1>¿A dónde querés vacacionar?</h1>
@@ -49,13 +65,18 @@ export default function Home(){
                 Recargar países
             </button>
             <div>
+                <SearchBar/>
+            </div>
+            <div>
                 <h4>Ordenar alfabéticamente</h4>
-                <select>
+                <select onChange = {e => handleOrderAlpha(e)}>
+                    <option>Seleccionar</option>
                     <option value = 'asc'>Ascendente</option>
                     <option value = 'des'>Descendente</option>
                 </select>
                 <h4>Ordenar por población</h4>
-                <select>
+                <select onChange = {e => handleOrderPopulation(e)}>
+                    <option>Seleccionar</option>
                     <option value = 'asc'>Ascendente</option>
                     <option value = 'des'>Descendente</option>
                 </select>

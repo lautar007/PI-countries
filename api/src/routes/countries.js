@@ -7,7 +7,7 @@ const getDbInfo =  async() =>{
     return await Country.findAll({
         include:{
             model: Activities,
-            attributes: ['name'],
+            attributes: ['name', "difficulty","duration", "season"],
             through:{
                 attributes: []
             }
@@ -25,7 +25,15 @@ server.get('', async(req, res, next)=>{
         res.status(200).json(country[0].dataValues) :
         res.status(404).send('El país buscado no existe')
     }
-    Country.findAll()
+    Country.findAll({
+        include:{
+            model: Activities,
+            attributes: ['name', "difficulty","duration", "season"],
+            through:{
+                attributes: []
+            }
+        }
+    })
     .then (countrys =>{
         countrys.length > 0 ? res.status(200).json(countrys) 
         : 
@@ -60,4 +68,21 @@ server.get('/:idPais', async(req, res, next)=>{
     res.json(country[0].dataValues)
 })
 
+//RUTA PARA UNIR UNA ACTIVIDAD CON UN PAÍS:
+//necesitamos tener el ID del país y el ID de la actividad por BODY!!!
+//Y realizar este PUT
+server.put('', async (req, res)=>{
+const {countryId, activityId} = req.body;
+const country = await Country.findOne({
+    where:{
+        id:countryId
+    }
+})
+const activity = await Activities.findOne({
+    where:{
+        id: activityId
+    }
+})
+res.json(await activity.addCountry(country))
+})
 module.exports = server
