@@ -87,6 +87,10 @@ function rootReducer (state = initialState, action){
             return{
                 ...state
             }
+        case 'PUT_ACTIVITY_COUNTRY':
+            return{
+                ...state
+            }
         default:
             return state;
     }

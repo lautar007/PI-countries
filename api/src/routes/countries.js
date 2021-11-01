@@ -69,18 +69,18 @@ server.get('/:idPais', async(req, res, next)=>{
 })
 
 //RUTA PARA UNIR UNA ACTIVIDAD CON UN PAÍS:
-//necesitamos tener el ID del país y el ID de la actividad por BODY!!!
+//necesitamos tener el nombre del país y el nombre de la actividad por BODY!!!
 //Y realizar este PUT
 server.put('', async (req, res)=>{
-const {countryId, activityId} = req.body;
+const {countryName, activityName} = req.body;
 const country = await Country.findOne({
     where:{
-        id:countryId
+        Name:countryName
     }
 })
 const activity = await Activities.findOne({
     where:{
-        id: activityId
+        name: activityName
     }
 })
 res.json(await activity.addCountry(country))

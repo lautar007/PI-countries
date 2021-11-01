@@ -54,3 +54,10 @@ export function postActivities(payload){
         return data;
     }
 }
+
+export function putActivityCountry(payload){
+    return async function (dispatch){
+        const dato = await axios.put('http://localhost:3001/countries', payload);
+        return dato;
+    }
+}

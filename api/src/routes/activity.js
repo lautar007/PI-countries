@@ -12,11 +12,14 @@ server.post('', async(req, res) => {
         duration,
         season
     } = req.body;
-    await Activities.create({
-        name,
-        difficulty,
-        duration,
-        season
+    await Activities.findOrCreate({
+        where: { name: name },
+  defaults: {
+    name: name,
+    difficulty: difficulty,
+    duration: duration,
+    season: season
+  }
     })
     res.status(200).send('Actividad creada con éxito')
 })
