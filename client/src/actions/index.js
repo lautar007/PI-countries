@@ -34,6 +34,13 @@ export function filterContinent(payload){
     }
 }
 
+export function filterActivity(payload){
+    return{
+        type: 'FILTER_ACTIVITY',
+        payload
+    }
+}
+
 export function orderAlpha(payload){
     return{
         type: 'ORDER_ALPHA',
@@ -59,5 +66,19 @@ export function putActivityCountry(payload){
     return async function (dispatch){
         const dato = await axios.put('http://localhost:3001/countries', payload);
         return dato;
+    }
+}
+
+export function getDetail(id){
+    return async function (dispatch){
+        try{
+        var json = await axios('http://localhost:3001/countries/' + id);
+        return dispatch({
+            type: 'GET_DETAIL',
+            payload: json.data
+        })
+    } catch(error){
+        console.log(error)
+    }
     }
 }

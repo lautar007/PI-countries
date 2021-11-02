@@ -2,7 +2,8 @@
 const initialState = {
     allCountries: [],
     countries: [],
-    activities: []
+    activities: [],
+    detail: []
 }
 
 function rootReducer (state = initialState, action){
@@ -19,8 +20,7 @@ function rootReducer (state = initialState, action){
             return{
                 ...state,
                 countries: country
-            }
-           
+            }        
         case 'GET_ACTIVITIES':
             return{
                 ...state,
@@ -34,6 +34,15 @@ function rootReducer (state = initialState, action){
             return{
                 ...state,
                 countries: continentFilter
+            }
+        case 'FILTER_ACTIVITY':
+            const allCountrys = state.allCountries;
+            const activityFilter = action.payload === 'Todas' ? allCountrys
+            :
+            allCountrys.filter(pais => pais.activities.find(act => act.name === action.payload));
+            return{
+                ...state,
+                countries: activityFilter
             }
         case 'ORDER_ALPHA':
             const orden = action.payload === 'asc' ?
@@ -90,6 +99,11 @@ function rootReducer (state = initialState, action){
         case 'PUT_ACTIVITY_COUNTRY':
             return{
                 ...state
+            }
+        case 'GET_DETAIL':
+            return{
+                ...state,
+                detail: action.payload
             }
         default:
             return state;

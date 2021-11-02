@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import {useDispatch, useSelector} from 'react-redux';
-import { getActivities, getCountries, filterContinent, orderAlpha, orderPopulation } from "../actions";
+import { getActivities, getCountries, filterContinent, orderAlpha, orderPopulation, filterActivity } from "../actions";
 import { Link } from "react-router-dom";
 import Card from "./cards";
 import Paginado from "./paginado";
@@ -12,6 +12,15 @@ export default function Home(){
     const dispatch = useDispatch();
     const allCountries = useSelector((state)=>state.countries);
     const allActivities = useSelector((state)=>state.activities);
+    const allActivitiesAlpha =  allActivities.sort(function(a,b){
+        if(a.name > b.name){
+            return 1;
+        }
+        if(b.name > a.name){
+            return -1;
+        }
+        return 0;
+    })
 
     //PAGINADO
     const [paginaActual, setPaginaActual] = useState(1);
@@ -41,6 +50,11 @@ export default function Home(){
     function handleFilterContinent(e){
         e.preventDefault();
         dispatch(filterContinent(e.target.value));
+    }
+
+    function handleFilterActivity(e){
+        e.preventDefault();
+        dispatch(filterActivity(e.target.value));
     }
 
     function handleOrderAlpha(e){
@@ -90,10 +104,10 @@ export default function Home(){
                     <option value = 'Oceania'>Oceanía</option>
                 </select>
                 <h4>Selecciona una actividad</h4>
-                <select>
+                <select onChange = {e => handleFilterActivity(e)}>
                     <option value = 'Todas'>Todas</option>
                     {
-                        allActivities && allActivities.map((el)=>{
+                        allActivitiesAlpha.map((el)=>{
                             return(
                                 <option key = {el.id} value = {el.name}>{el.name}</option>
                             )
@@ -109,7 +123,7 @@ export default function Home(){
                     countriesActuales && countriesActuales.map((el)=>{
                         return(
                             <div key = {el.id}>
-                        <Card flag = {el.flag} name = {el.Name} continent = {el.continent}/>
+                        <Card flag = {el.flag} name = {el.Name} continent = {el.continent} id = {el.id}/>
                         <hr/>
                         </div>
                         )

@@ -73,16 +73,23 @@ server.get('/:idPais', async(req, res, next)=>{
 //Y realizar este PUT
 server.put('', async (req, res)=>{
 const {countryName, activityName} = req.body;
-const country = await Country.findOne({
-    where:{
-        Name:countryName
-    }
+
+const countrys = await Promise.all(
+  countryName.map(async (el) => {
+    const country = await Country.findOne({
+        where:{
+            Name:el
+        }
+    })
+    const activity = await Activities.findOne({
+        where:{
+            name: activityName
+        }
+    })
+    return await activity.addCountry(country)
+  })
+)
+res.json(countrys)
 })
-const activity = await Activities.findOne({
-    where:{
-        name: activityName
-    }
-})
-res.json(await activity.addCountry(country))
-})
+
 module.exports = server
