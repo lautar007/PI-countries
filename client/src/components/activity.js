@@ -111,9 +111,9 @@ export default function Activity(){
         console.log(input);
         console.log(count);
         if(!input.name ||
-            !input.difficulty ||
-            input.duration % 10 !== 0 ||
-            input.duration > 100 ||
+            !input.duration ||
+            input.difficulty % 10 !== 0 ||
+            input.difficulty > 100 ||
             !input.season ||
             count.countryName.length == 0){
             alert('Todos los campos deben ser completados correctamente')

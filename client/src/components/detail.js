@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getDetail } from "../actions";
+import Activities from "./activities";
 
 export default function Detail(props){
 
@@ -13,6 +14,7 @@ export default function Detail(props){
     }, [dispatch]);
 
     const myCountry = useSelector((state) => state.detail)
+    
     
 
     return(
@@ -33,6 +35,16 @@ export default function Detail(props){
                     </div>
                     <div>
                         <h2>Actividades</h2>
+                        {
+                    myCountry.activities && myCountry.activities.map((el)=>{
+                        return(
+                            <div key = {el.name}>
+                        <Activities name = {el.name} difficulty = {el.difficulty} duration = {el.duration} season = {el.season}/>
+                        <hr/>
+                        </div>
+                        )
+                    })
+                }
                         
                     </div>
                 </div>
