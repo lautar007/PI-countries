@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import Card from "./cards";
 import Paginado from "./paginado";
 import SearchBar from "./searchBar";
+import './home.css'
 
 export default function Home(){
     
@@ -72,29 +73,35 @@ export default function Home(){
     }
 
     return(
-        <div>
+        <div className = 'fondo'>
             <h1>¿A dónde querés vacacionar?</h1>
-            <Link to = '/activity'>Crear una actividad</Link>
-            <button onClick={(e)=>{handleRecarga(e)}}>
+            <Link className = 'crear' to = '/activity'>Crea tu propia actividad</Link>
+            <br/>
+            <button className = 'recarga' onClick={(e)=>{handleRecarga(e)}}>
                 Recargar países
             </button>
             <div>
                 <SearchBar/>
             </div>
-            <div>
-                <h4>Ordenar alfabéticamente</h4>
+            <div className = 'filtros'>
+                <div id = 'A'>
+                <h4 className = 'opciones'>Ordenar alfabéticamente</h4>
                 <select onChange = {e => handleOrderAlpha(e)}>
                     <option>Seleccionar</option>
                     <option value = 'asc'>Ascendente</option>
                     <option value = 'des'>Descendente</option>
                 </select>
-                <h4>Ordenar por población</h4>
+                </div>
+                <div id = 'B'>
+                <h4 className = 'opciones'>Ordenar por población</h4>
                 <select onChange = {e => handleOrderPopulation(e)}>
                     <option>Seleccionar</option>
                     <option value = 'asc'>Ascendente</option>
                     <option value = 'des'>Descendente</option>
                 </select>
-                <h4>Selecciona un Continente</h4>
+                </div>
+                <div id= 'C'>
+                <h4 className = 'opciones'>Selecciona un Continente</h4>
                 <select onChange = {e => handleFilterContinent(e)}>
                     <option value = 'Todos'>Todos</option> 
                     <option value = 'Americas'>Américas</option>
@@ -103,7 +110,9 @@ export default function Home(){
                     <option value = 'Africa'>África</option>
                     <option value = 'Oceania'>Oceanía</option>
                 </select>
-                <h4>Selecciona una actividad</h4>
+                </div>
+                <div id = 'D'>
+                <h4 className = 'opciones'>Selecciona una actividad</h4>
                 <select onChange = {e => handleFilterActivity(e)}>
                     <option value = 'Todas'>Todas</option>
                     {
@@ -113,22 +122,26 @@ export default function Home(){
                             )
                         })
                     }
-                </select> 
+                </select>
+                </div>
+            </div>
+            <div>
                 <Paginado
                 countriesPorPagina = {countriesPorPagina}
                 allCountries = {allCountries.length}
                 paginado = {paginado}
                 />
+                <div className = 'cards'>
                 {
                     countriesActuales && countriesActuales.map((el)=>{
                         return(
                             <div key = {el.id}>
                         <Card flag = {el.flag} name = {el.Name} continent = {el.continent} id = {el.id}/>
-                        <hr/>
                         </div>
                         )
                     })
                 }
+                </div>
             </div>
         </div>
     )

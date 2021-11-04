@@ -1,13 +1,13 @@
 import React from "react";
-
+import './activities.css'
 
 export default function Activities({ name, difficulty, duration, season}){
     return(
-        <div>
-        <h3>{name}</h3>
-        <h4>Dificultad: {difficulty}</h4>
-        <h4>Duración: {duration}</h4>
-        <h4>Temporada: {season}</h4>
+        <div className = 'conteiner'>
+        <h3 className = 'names'>{name}</h3>
+        <h4 className = 'actinfo'>Dificultad: {difficulty}</h4>
+        <h4 className = 'actinfo'>Duración: {duration}</h4>
+        <h4 className = 'actinfo'>Temporada: {season}</h4>
     </div>
     )
 }

@@ -1,0 +1,76 @@
+.fondo1{
+    background: url('../media/Fondo\ PI\ 2.png');
+    background-size: cover;
+}
+
+.nombre{
+    font-size: 40pt;
+}
+
+.infopais{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.bandera{
+    width: 60vh; 
+    height: 30vh;
+    margin: 5px;    
+    border-radius: 15px;
+    box-shadow: 2px 2px 40px 11px #2e2e2e;
+    margin-top: 17px;
+}
+
+.info{
+    border-style: solid;
+    border-color: black;
+    background-color: rgb(70, 70, 70);
+    border-radius: 25px;
+    background-image: linear-gradient(to right, rgb(209, 200, 0) 0%, rgb(233, 248, 72) 50%, rgb(209, 200, 0) 100%);
+    margin: 10px 20px 10px 20px;
+    box-shadow: rgb(0, 0, 0) 5px 5px 5px 5px; 
+    padding-bottom: 10px;
+}
+
+.actividades{
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    letter-spacing: 2px;
+    word-spacing: 2px;
+    color: white;
+    font-weight: 700;
+    font-style: italic;
+    font-variant: small-caps;
+    text-shadow: 0 0 2px rgb(255, 255, 255), 0 0 2px rgb(255, 255, 255);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    justify-content: center;
+}
+
+.infoact{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0% 10% 10px 10%;
+}
+
+.botonback{
+    color: rgb(255, 255, 255); 
+    font-size: 12px; 
+    font-weight: 700;
+    line-height: 23px; 
+    padding: 5px; 
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px; 
+    font-family: Verdana, Geneva, sans-serif;; 
+    background-image: linear-gradient(to right, rgb(136, 136, 136) 0%, rgb(58, 58, 58) 15%, rgb(49, 49, 49) 100%); 
+    box-shadow: rgb(0, 0, 0) 5px 5px 5px 5px; 
+    border: 2px solid rgb(0, 0, 0); 
+    display: inline-block;
+}
+
+.botonback:hover{
+    background-image: linear-gradient(to right, rgb(255, 251, 0) 0%, rgb(237, 247, 134) 50%, rgb(255, 251, 0) 100%);
+    color: black;
+}

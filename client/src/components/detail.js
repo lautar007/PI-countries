@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getDetail } from "../actions";
 import Activities from "./activities";
+import './detail.css'
 
 export default function Detail(props){
 
@@ -18,33 +19,36 @@ export default function Detail(props){
     
 
     return(
-        <div>
+        <div className = 'fondo1'>
             {
                 myCountry? 
                 <div>
-                    <div>
-                       <h1>{myCountry.Name}</h1>
-                       <img src = {myCountry.flag}/>
+                    <h1 className = 'nombre'>{myCountry.Name}</h1>
+                    <div className = 'infopais'>
+                        <div>
+                            <img className = 'bandera' src = {myCountry.flag}/>
+                        </div>
+                        <div className = 'info'>
+                            <h4>Código de país: {myCountry.id}</h4>
+                            <h4>Capital: {myCountry.capital}</h4>
+                            <h4>Subregión: {myCountry.subregion}</h4>
+                            <h4>Área: {myCountry.area} Km2</h4>
+                            <h4>Población: {myCountry.population}</h4>
+                        </div>
                     </div>
                     <div>
-                        <h4>Código de país: {myCountry.id}</h4>
-                        <h4>Capital: {myCountry.capital}</h4>
-                        <h4>Subregión: {myCountry.subregion}</h4>
-                        <h4>Área: {myCountry.area}</h4>
-                        <h4>Población: {myCountry.population}</h4>
-                    </div>
-                    <div>
-                        <h2>Actividades</h2>
+                        <h2 className = 'actividades'>Actividades</h2>
+                        <div className = 'infoact'>
                         {
                     myCountry.activities && myCountry.activities.map((el)=>{
                         return(
                             <div key = {el.name}>
                         <Activities name = {el.name} difficulty = {el.difficulty} duration = {el.duration} season = {el.season}/>
-                        <hr/>
                         </div>
                         )
                     })
                 }
+                </div>
                         
                     </div>
                 </div>
@@ -52,7 +56,7 @@ export default function Detail(props){
                 <p>Cargando...</p>
             }
             <Link to = '/home'>
-                <button>
+                <button className = 'botonback'>
                     Volver al Home
                 </button>
             </Link>

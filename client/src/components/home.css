@@ -1,0 +1,99 @@
+.fondo{
+    background: url('../media/planeta\ Tierra.jpg');
+    background-size: contain;
+}
+
+h1{
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    letter-spacing: 2px;
+    word-spacing: 2px;
+    color: white;
+    font-weight: 700;
+    font-style: italic;
+    font-variant: small-caps;
+    text-shadow: 0 0 2px rgb(255, 255, 255), 0 0 2px rgb(255, 255, 255);
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.crear{
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    letter-spacing: 2px;
+    word-spacing: 2px;
+    color: white;
+    font-weight: 700;
+    font-style: italic;
+    font-variant: small-caps;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    justify-content: center;
+}
+.crear:hover{
+    color:yellow;
+}
+
+.recarga{
+    color: rgb(255, 255, 255); 
+    font-size: 12px; 
+    font-weight: 700;
+    line-height: 23px; 
+    padding: 5px; 
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px; 
+    font-family: Verdana, Geneva, sans-serif;; 
+    background-image: linear-gradient(to right, rgb(136, 136, 136) 0%, rgb(58, 58, 58) 15%, rgb(49, 49, 49) 100%); 
+    box-shadow: rgb(0, 0, 0) 5px 5px 5px 5px; 
+    border: 2px solid rgb(0, 0, 0); 
+    display: inline-block;
+}
+.recarga:hover{
+    background-image: linear-gradient(to right, rgb(255, 251, 0) 0%, rgb(237, 247, 134) 50%, rgb(255, 251, 0) 100%);
+    color: black;
+}
+
+
+.filtros{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 0% 15% 0% 15%;
+}
+
+#A, #B, #C, #D{
+    color:black;
+    border-style: solid;
+    border-color: black;
+    background-color: rgb(70, 70, 70);
+    border-radius: 25px;
+    background-image: linear-gradient(to right, rgb(255, 251, 0) 0%, rgb(100, 109, 0) 85%, rgb(70, 65, 0) 100%);
+    margin: 10px 20px 10px 20px;
+    box-shadow: rgb(0, 0, 0) 5px 5px 5px 5px; 
+    padding-bottom: 10px;
+}
+
+.opciones{
+    color:black;
+}
+
+h4{
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    letter-spacing: 2px;
+    word-spacing: 2px;
+    color: black;
+    font-weight: 700;
+    font-style: italic;
+    font-size: 14px;
+    font-variant: small-caps; 
+    padding-top: 0px;
+    padding-left: 80px;
+    padding-right: 80px;
+}
+
+
+.cards{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0% 10% 0% 10%;
+}

@@ -1,0 +1,22 @@
+.paginado{
+    display: flex;
+    list-style: none;
+    color:white;
+    justify-content: center;
+}
+
+.numeros{
+    text-decoration: underline solid rgb(68, 68, 68);
+    margin-left: 5px;
+    margin-right: 5px;
+    padding:5px;
+    border-style: solid;
+    border-color: yellow;
+    border-width: 2px;
+    border-radius: 10px;
+}
+
+.numeros:hover{
+    color: black;
+    background-color: yellow;
+}
