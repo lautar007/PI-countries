@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { postActivities, getCountries, putActivityCountry } from "../actions";
+import './activity.css';
 
 function validatorInput (input){
     let errores = {};
@@ -9,8 +10,8 @@ function validatorInput (input){
         errores.name = 'Defina el nombre de la actividad'
     } else if (!input.difficulty){
         errores.difficulty = 'Defina la dificultad de la actividad'
-    } else if(input.difficulty % 10 !== 0 || input.difficulty > 100){
-        errores.difficulty = 'La dificultad debe ser un número redondo entre 0 y 100'
+    } else if(input.difficulty <= 0 || input.difficulty > 5){
+        errores.difficulty = 'Debe ser un número del 1 al 5'
     }else if (!input.duration){
         errores.duration = 'Defina la duración de la actividad'
     } else if (!input.season){
@@ -32,6 +33,7 @@ function validatorCount (count){
 export default function Activity(){
     const dispatch = useDispatch();
     const countries = useSelector((state)=> state.countries);
+    const allActivities = useSelector((state)=>state.activities);
     const countriesAlpha = countries.sort(function(a,b){
         if(a.Name > b.Name){
             return 1;
@@ -106,27 +108,37 @@ export default function Activity(){
         })
     }
 
-    function handleSubmit(e){
+    function handleActividad(e){
         e.preventDefault();
         console.log(input);
-        console.log(count);
         if(!input.name ||
             !input.duration ||
-            input.difficulty % 10 !== 0 ||
-            input.difficulty > 100 ||
-            !input.season ||
-            count.countryName.length == 0){
-            alert('Todos los campos deben ser completados correctamente')
+            input.difficulty <= 0 ||
+            input.difficulty > 5 ||
+            !input.season){
+                alert('Todos los campos deben ser completados correctamente')
+            } else {
+                dispatch(postActivities(input));
+                alert('actividad creada con éxito :)')
+                setInput({
+                    name: "",
+                    difficulty: 0,
+                    duration: "",
+                    season: ""
+                });
+            }
+    }
+
+    function handleSubmit(e){
+        e.preventDefault();
+        console.log(count);
+        if(!input.name){
+            alert('Debe aclarar el nombre de la actividad')
+        }else if(count.countryName.length == 0){
+            alert('Debe seleccionar la menos un país')
         } else {
-        dispatch(postActivities(input));
         dispatch(putActivityCountry(count));
-        alert('Actividad creada con éxito :)');
-        setInput({
-            name: "",
-            difficulty: 0,
-            duration: "",
-            season: ""
-        });
+        alert('La actividad se ha asignado a el/los país/es');
         setCount({
             countryName: "",
             activityName: ""
@@ -139,15 +151,16 @@ export default function Activity(){
     },[]);
 
     return(
-        <div>
+        <div className = 'fondo1'>
             <Link to = '/home'>
-                <button>
+                <button className = 'botonback'>
                     Volver al Home
                 </button>
             </Link>
             <h1>Crear una actividad</h1>
-            <form onSubmit = {(e) => handleSubmit(e)}>
-                <div>
+            <p className = 'instrucciones'>Para crear una nueva actividad, simplemente complete los campos del formulario y haga click en el botón de 'crear'. Luego, para asignar la actividad a los países, coloque el nombre de la actividad creada en el campo correspondiente y luego elija el o los países que prefiera. Finalmente haga click en 'asignar'.</p>
+            <form className = 'formulario' onSubmit = {(e) => handleSubmit(e)}>
+                <div className = 'input'>
                     <label>Nombre:</label>
                    <input
                    type = 'text'
@@ -162,7 +175,7 @@ export default function Activity(){
                        <p className = 'error'>{errores.name}</p>
                    )}
                 </div>
-                <div>
+                <div className = 'input'>
                     <label>Dificultad:</label>
                     <input
                     type = 'number'
@@ -174,7 +187,7 @@ export default function Activity(){
                        <p className = 'error'>{errores.difficulty}</p>
                    )}
                 </div>
-                <div>
+                <div className = 'input'>
                     <label>Duración:</label>
                    <input
                    type = 'text'
@@ -186,7 +199,7 @@ export default function Activity(){
                        <p className = 'error'>{errores.duration}</p>
                    )}
                 </div>
-                <div>
+                <div className = 'checkbox'>
                     <label>Estación:</label>
                     <label>
                     <input
@@ -229,6 +242,9 @@ export default function Activity(){
                    )}
                 </div>
                 <div>
+                    <button className = 'crear' onClick = {(e) => handleActividad(e)}>Crear Actividad</button>
+                </div>
+                <div className = 'select'>
                     <label>¿En qué páis se puede realizar la actividad?</label>
                 <select onChange = {(e) => {handleCountryName(e)}}>
                     <option key = 'selec'>Seleccionar</option>
@@ -237,11 +253,11 @@ export default function Activity(){
                         <option key = {el.id}  value = {el.Name}>{el.Name}</option>
                     ))}
                 </select>
-                <ul>
+                <ul className = 'listado'>
                     { count.countryName ? count.countryName.map(el =>{
                         return(
-                            <div>
-                                <li key = {el}>{el + ', '}</li>
+                            <div className = 'listadopais'>
+                                <li key = {el}>{el}</li>
                                 <button onClick = {()=>handleDelete(el)}>X</button>
                             </div>    
                         )
@@ -251,8 +267,8 @@ export default function Activity(){
                        <p className = 'error'>{errores.country}</p>
                    )}
                 </div>
-                <div>
-                    <button type = 'submit'>Crear</button>
+                <div className = 'divcrear'>
+                    <button className = 'crear' type = 'submit'>Asignar País/es</button>
                 </div>
             </form>
         </div>
