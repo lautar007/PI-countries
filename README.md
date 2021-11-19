@@ -8,13 +8,13 @@
 </p>
 
 ## Objetivos del Proyecto
-### Objectives of the project
 
 - Construir una App utlizando React, Redux, Node y Sequelize.
 - Afirmar y conectar conceptos aprendidos.
 - Aprender mejores prácticas.
 - Aprender y practicar el workflow de GIT.
 
+### Objectives of the project
 - Build an App using React, Redux, Node and Sequelize.
 - Affirm and connect learned concepts.
 - Learn better practices.
