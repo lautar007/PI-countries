@@ -1,11 +1,10 @@
 <p align='left'>
-    <img src='https://www.geoenciclopedia.com/wp-content/uploads/2018/10/banderas-paises.jpg' </img>
 </p>
 
 # Individual Project - Henry Countries
 
 <p align="left">
-  <img height="200" src="./countries.png" />
+  <img height="200" src="https://www.geoenciclopedia.com/wp-content/uploads/2018/10/banderas-paises.jpg" />
 </p>
 
 ## Objetivos del Proyecto
