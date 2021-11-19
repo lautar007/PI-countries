@@ -57,7 +57,6 @@ Al iniciar veremos un landing de bienvenida con un botón de ingreso. Una vez de
 At the beginning we will see a welcome landing with a login button. Once inside the Home we will see a list of countries in which we can enter. At the top there are different filtering options, as well as the search bar and the button to create an activity. By clicking on it, we will have access to a controlled form that will allow us to create the activity with all its information and assign it to one or more countries. On the Card component of each country you can see the information about it and its activities. 
 
 #### Comienzo rápido
-#### Quick Start
 
 - Clonar el repositorio
 - Acceda desde la terminal a la carpeta 'api' y corra los siguientes comandos:
@@ -68,6 +67,8 @@ At the beginning we will see a welcome landing with a login button. Once inside 
 - npm start
 
 La aplicación debería mostrarse a traves de su navegador.
+
+#### Quick Start
 
 - Clone repository
 - Enter through the terminal to the 'api' folder and run the next commands:
