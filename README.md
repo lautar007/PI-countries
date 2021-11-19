@@ -52,6 +52,8 @@ The general idea is make an application where it's possible see information abou
 
 Al iniciar veremos un landing de bienvenida con un botón de ingreso. Una vez dentro del Home veremos una lista de países en los cuales podremos ingresar. En la parte superior se ubican las diferentes opciones de filtrado, como así también la barra de búsqueda y el botón para crear una actividad. Al hacer click en él, tendremos acceso a un formulario controlado que nos permitirá crear la actividad con toda su información y asignarla a uno o más países. En el componente Card de cada país se podrá ver la información del mismo y sus actividades.
 
+#### How to use it?
+
 At the beginning we will see a welcome landing with a login button. Once inside the Home we will see a list of countries in which we can enter. At the top there are different filtering options, as well as the search bar and the button to create an activity. By clicking on it, we will have access to a controlled form that will allow us to create the activity with all its information and assign it to one or more countries. On the Card component of each country you can see the information about it and its activities. 
 
 #### Comienzo rápido
