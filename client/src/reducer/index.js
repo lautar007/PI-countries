@@ -16,7 +16,7 @@ function rootReducer (state = initialState, action){
         }
         case 'GET_NAME_COUNTRY':
             const allCountries1 = state.allCountries;
-            const country = allCountries1.filter(el => el.Name.toUpperCase() === action.payload.toUpperCase())
+            const country = allCountries1.filter(el => el.Name.toUpperCase().includes(action.payload.toUpperCase()))
             return{
                 ...state,
                 countries: country

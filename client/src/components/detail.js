@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useEffect} from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getDetail } from "../actions";
@@ -6,7 +6,7 @@ import Activities from "./activities";
 import './detail.css'
 
 export default function Detail(props){
-
+    console.log(props)
 
     const dispatch = useDispatch();
 
@@ -26,7 +26,7 @@ export default function Detail(props){
                     <h1 className = 'nombre'>{myCountry.Name}</h1>
                     <div className = 'infopais'>
                         <div>
-                            <img className = 'bandera' src = {myCountry.flag}/>
+                            <img className = 'bandera' src = {myCountry.flag} alt = ''/>
                         </div>
                         <div className = 'info'>
                             <h4>Código de país: {myCountry.id}</h4>

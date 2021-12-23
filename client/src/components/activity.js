@@ -23,7 +23,7 @@ function validatorInput (input){
 
 function validatorCount (count){
     let errores = {};
-    if (count.countryName.length = 0){
+    if (count.countryName.length === 0){
         errores.country = 'Defina en qué país/es se realiza la actividad'
     }
 
@@ -33,7 +33,6 @@ function validatorCount (count){
 export default function Activity(){
     const dispatch = useDispatch();
     const countries = useSelector((state)=> state.countries);
-    const allActivities = useSelector((state)=>state.activities);
     const countriesAlpha = countries.sort(function(a,b){
         if(a.Name > b.Name){
             return 1;
@@ -134,7 +133,7 @@ export default function Activity(){
         console.log(count);
         if(!input.name){
             alert('Debe aclarar el nombre de la actividad')
-        }else if(count.countryName.length == 0){
+        }else if(count.countryName.length === 0){
             alert('Debe seleccionar la menos un país')
         } else {
         dispatch(putActivityCountry(count));
@@ -148,7 +147,7 @@ export default function Activity(){
 
     useEffect(()=>{
         dispatch(getCountries());
-    },[]);
+    });
 
     return(
         <div className = 'fondo1'>
