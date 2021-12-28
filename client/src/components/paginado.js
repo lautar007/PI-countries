@@ -14,7 +14,7 @@ export default function Paginado ({countriesPorPagina, allCountries, paginado}){
                 {numerosPagina &&
                 numerosPagina.map(number =>(
                     <li className = 'numeros' key = {number}>
-                    <a onClick = {()=> paginado(number)}>{number}</a>
+                    <button onClick = {()=> paginado(number)}>{number}</button>
                     </li>
                 ))
                 }

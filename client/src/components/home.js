@@ -25,11 +25,11 @@ export default function Home(){
 
     //PAGINADO
     const [paginaActual, setPaginaActual] = useState(1);
-    const [countriesPorPagina, setCountriesPorPagina] = useState(9);
+    const countriesPorPagina = 9;
     const ultimoCountry = paginaActual * countriesPorPagina;
     const primerCountry = ultimoCountry - countriesPorPagina;
     const countriesActuales = allCountries.slice(primerCountry, ultimoCountry)
-    const [orden, setOrden] = useState('');
+
 
     const paginado = (numeroPagina) =>{
         setPaginaActual(numeroPagina)
@@ -37,11 +37,11 @@ export default function Home(){
 
     useEffect(()=>{
         dispatch(getCountries());
-    },[]);
+    },[dispatch]);
 
     useEffect(()=>{
         dispatch(getActivities());
-    },[]);
+    },[dispatch]);
 
     function handleRecarga(e){
         e.preventDefault();
@@ -62,14 +62,13 @@ export default function Home(){
         e.preventDefault();
         dispatch(orderAlpha(e.target.value));
         setPaginaActual(1);
-        setOrden(`Ordenado ${e.target.value}`)
+        
     }
 
     function handleOrderPopulation(e){
         e.preventDefault();
         dispatch(orderPopulation(e.target.value));
         setPaginaActual(1);
-        setOrden(`Ordenado ${e.target.value}`)
     }
 
     return(
