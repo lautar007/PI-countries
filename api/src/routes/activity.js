@@ -31,7 +31,7 @@ server.get('', (req, res, next)=>{
             res.status(200).json(activities)
         }
         else{
-            res.status(404).send('No hay actividades')
+            res.status(402).send('No hay actividades')
         }
     })
 })
